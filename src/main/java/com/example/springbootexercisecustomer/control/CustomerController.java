@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/coustomers")
@@ -18,22 +19,22 @@ public class CustomerController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public void addNewCustomer(@RequestBody Customer customer){
-        customerService.addNewCustomer(customer);
+        customerService.createCustomer(customer);
     }
 
     @GetMapping
-    public ArrayList<Customer> getAllCustomer(){
-        return customerService.getAllCustomer();
+    public List<Customer> getAllCustomer(){
+        return customerService.getAllCustomers();
     }
 
     @GetMapping("/{id}")
     public Customer getCustomerByID(@PathVariable int id){
-        return customerService.getCustomerByID(id);
+        return customerService.getCustomerById(id);
     }
 
     @PutMapping("/{id}")
     public void updateCustomerByID(@PathVariable int id,@RequestBody Customer newCustomer){
-        customerService.updateCustomerByID(id, newCustomer);
+        customerService.updateCustomer(id, newCustomer);
     }
 
 }
